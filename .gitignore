@@ -4,7 +4,7 @@
 /.**
 
 ### not ignore (white list) ###
-# !/.zshrc
+!/.zshrc
 # !/.zshenv
 # !/.zfunc/
 # /.zfunc/**
@@ -19,7 +19,7 @@
 # !/.zsh/completion/
 # /.zsh/completion/**
 # !/.virc
-# !/.vimrc
+!/.vimrc
 # !/.vim/
 # !/.vim/*/
 # !/.vim/rc/
