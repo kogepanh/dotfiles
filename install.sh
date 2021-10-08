@@ -3,6 +3,6 @@
 set -ue
 
 ln -s .vimrc ~/.vimrc
-ln -s .config/git/ignore ~/.config/git/ignore
+ln -s .config ~/.config
 
 exit 0
