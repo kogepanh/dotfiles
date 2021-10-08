@@ -2,10 +2,7 @@
 
 set -ue
 
-DOTFILES_DIR="$HOME/dotfiles"
-
-# ln -s $DOTFILES_DIR/.vimrc ~/.vimrc
-# ln -s .config ~/.config
+DOTFILES_DIR=$HOME"/dotfiles"
 
 for f in .??*
 do
@@ -14,7 +11,7 @@ do
   [[ "$f" == ".gitignore" ]] && continue
   [[ "$f" == ".DS_Store" ]] && continue
 
-  ln -snf $DOTFILES_DIR/"$f" $HOME/".$f"
+  ln -snf $DOTFILES_DIR/"$f" $HOME/"$f"
 
   echo "$f"
 done
