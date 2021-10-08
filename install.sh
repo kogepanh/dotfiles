@@ -2,6 +2,7 @@
 
 set -ue
 
-echo "Hello World!"
+ln -s .vimrc ~/.vimrc
+ln -s .config/git/ignore ~/.config/git/ignore
 
 exit 0
