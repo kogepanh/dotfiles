@@ -4,7 +4,7 @@ set -ue
 
 DOT_DIR="~/dotfiles"
 
-if if [ ! -d ${DOT_DIR} ]; then
+if if [ ! -d $DOT_DIR ]; then
   for f in .??*
   do
     [[ "$f" == ".git" ]] && continue
@@ -14,7 +14,6 @@ if if [ ! -d ${DOT_DIR} ]; then
     [[ "$f" == ".DS_Store" ]] && continue
 
     ln -snf "$DOT_DIR/$f" "~/$f"
-
     echo "$f"
   done
 else
