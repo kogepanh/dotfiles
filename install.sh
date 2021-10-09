@@ -4,7 +4,7 @@ set -ue
 
 DOT_DIR="~/dotfiles"
 
-if if [ ! -d $DOT_DIR ]; then
+if [ ! -d $DOT_DIR ]; then
   for f in .??*
   do
     [[ "$f" == ".git" ]] && continue
