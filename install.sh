@@ -11,7 +11,7 @@ has() {
 
 if [ ! -d $DOT_DIR ]; then
   if has "git"; then
-    git clone $DOT_REPO $HOME
+    git clone $DOT_REPO $HOME/
   else
     echo "Error: git required"
     exit 1
