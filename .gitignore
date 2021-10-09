@@ -64,3 +64,4 @@
 !/LICENSE.txt
 !/.gitignore
 # !/.gitkeep
+!/.editorconfig

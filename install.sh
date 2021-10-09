@@ -10,6 +10,7 @@ if if [ ! -d ${DOT_DIR} ]; then
     [[ "$f" == ".git" ]] && continue
     [[ "$f" == ".github" ]] && continue
     [[ "$f" == ".gitignore" ]] && continue
+    [[ "$f" == ".editorconfig" ]] && continue
     [[ "$f" == ".DS_Store" ]] && continue
 
     ln -snf "$DOT_DIR/$f" "~/$f"
