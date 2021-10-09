@@ -3,6 +3,7 @@
 set -ue
 
 DOT_DIR="~/dotfiles"
+DOT_REPO="https://github.com/kogepanh/dotfiles.git"
 
 has() {
   type "$1" > /dev/null 2>&1
@@ -10,13 +11,13 @@ has() {
 
 if [ ! -d $DOT_DIR ]; then
   if has "git"; then
-      git clone https://github.com/kogepanh/dotfiles.git ${DOT_DIR}
+    git clone $DOT_REPO $DOT_DIR
   else
     echo "git required"
     exit 1
   fi
 
-  cd ${DOT_DIR}
+  cd $DOT_DIR
 
   for f in .??*
   do
@@ -26,7 +27,7 @@ if [ ! -d $DOT_DIR ]; then
     [[ "$f" == ".editorconfig" ]] && continue
     [[ "$f" == ".DS_Store" ]] && continue
 
-    ln -snf "$DOT_DIR/$f" "~/$f"
+    ln -snf "$DOT_DIR/$f" $HOME"/$f"
     echo "$f"
   done
 else
