@@ -4,6 +4,7 @@ set -ue
 
 DOT_DIR=$HOME/dotfiles
 DOT_REPO="https://github.com/kogepanh/dotfiles.git"
+TAR_BALL="https://github.com/kogepanh/dotfiles/archive/main.tar.gz"
 
 has() {
   type "$1" > /dev/null 2>&1
@@ -11,7 +12,7 @@ has() {
 
 if [ ! -d $DOT_DIR ]; then
   if has "git"; then
-    git clone $DOT_REPO
+    git clone $DOT_REPO $HOME
   else
     echo "Error: git required"
     exit 1
