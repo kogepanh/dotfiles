@@ -25,7 +25,7 @@ function setup() {
       elif has "wget"; then
         wget -O "$TAR_BALL"
       fi | tar zxv
-      mv -f dotfiles-master "$DOT_DIR"
+      mv -f dotfiles-main "$DOT_DIR"
     else
       die "git or curl, wget required"
     fi
