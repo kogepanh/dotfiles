@@ -16,12 +16,14 @@ function has() {
 # }
 
 function setup() {
+  cd $HOME
+
   if [ -d "$DOT_DIR" ]; then
     echo "dotfiles already exists"
     cd "$DOT_DIR" && git pull --rebase
   else
     if has "git"; then
-      git clone "$GITHUB_URL" "$HOME"
+      git clone "$GITHUB_URL"
     elif has "curl"; then
       curl -L "$TAR_BALL"
       mv -f dotfiles-master "$DOT_DIR"
