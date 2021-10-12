@@ -21,7 +21,7 @@ function setup() {
       git clone "$GITHUB_URL"
     elif has "curl" || has "wget"; then
       if has "wget"; then
-        wget -O "$TAR_BALL"
+        wget -O - "$TAR_BALL"
       elif has "curl"; then
         curl -L "$TAR_BALL" -o dotfiles-master.tar.gz
       fi
