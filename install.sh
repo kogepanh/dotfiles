@@ -16,37 +16,37 @@ function has() {
 # }
 
 function setup() {
-  # if [ -d "$DOT_DIR" ]; then
-  #   echo "dotfiles already exists"
-  #   cd "$DOT_DIR" && git pull --rebase
-  # else
-  if [has "git"]; then
-    git clone "$GITHUB_URL" "$HOME"
-  elif [has "curl"]; then
-    curl -L "$TAR_BALL"
-    mv -f dotfiles-master "$DOT_DIR"
-  elif [has "wget"]; then
-    wget -O - "$TAR_BALL"
-    mv -f dotfiles-master "$DOT_DIR"
+  if [ -d "$DOT_DIR" ]; then
+    echo "dotfiles already exists"
+    cd "$DOT_DIR" && git pull --rebase
   else
-    die "git or curl or wget required"
+    if has "git"; then
+      git clone "$GITHUB_URL" "$HOME"
+    elif has "curl"; then
+      curl -L "$TAR_BALL"
+      mv -f dotfiles-master "$DOT_DIR"
+    elif has "wget"; then
+      wget -O - "$TAR_BALL"
+      mv -f dotfiles-master "$DOT_DIR"
+    else
+      die "git or curl or wget required"
+    fi
+
+    cd $DOT_DIR
+
+    for f in .??*
+    do
+      [[ "$f" == ".git" ]] && continue
+      [[ "$f" == ".github" ]] && continue
+      [[ "$f" == ".gitignore" ]] && continue
+      [[ "$f" == ".gitattributes" ]] && continue
+      [[ "$f" == ".editorconfig" ]] && continue
+      [[ "$f" == ".DS_Store" ]] && continue
+
+      ln -snfv "$DOT_DIR/$f" "$HOME"/"$f"
+      echo "$f"
+    done
   fi
-
-  cd $DOT_DIR
-
-  for f in .??*
-  do
-    [[ "$f" == ".git" ]] && continue
-    [[ "$f" == ".github" ]] && continue
-    [[ "$f" == ".gitignore" ]] && continue
-    [[ "$f" == ".gitattributes" ]] && continue
-    [[ "$f" == ".editorconfig" ]] && continue
-    [[ "$f" == ".DS_Store" ]] && continue
-
-    ln -snfv "$DOT_DIR/$f" "$HOME"/"$f"
-    echo "$f"
-  done
-  # fi
 }
 
 DOT_DIR=$HOME/dotfiles
