@@ -12,7 +12,7 @@ symlink() {
 
 setup() {
   DOT_DIR=$HOME/dotfiles
-  DOT_REPO="https://github.com/kogepanh/dotfiles.git"
+  GITHUB_URL="https://github.com/kogepanh/dotfiles.git"
   TAR_BALL="https://github.com/kogepanh/dotfiles/archive/main.tar.gz"
 
   if [ -d "$DOT_DIR" ]; then
@@ -21,7 +21,14 @@ setup() {
     exit 1
   else
     if has "git"; then
-      git clone "$DOT_REPO" "$HOME"
+      git clone "$GITHUB_URL" "$HOME"
+    elif has "curl" || has "wget"; then
+      if has "curl"; then
+        curl -L "$TAR_BALL"
+      elif has "wget"; then
+        wget -O - "$TAR_BALL"
+      fi | tar zxv
+      mv -f dotfiles-master "$DOT_DIR"
     else
       echo "Error: git required"
       exit 1
@@ -37,7 +44,7 @@ setup() {
       [[ "$f" == ".editorconfig" ]] && continue
       [[ "$f" == ".DS_Store" ]] && continue
 
-      ln -snf $DOT_DIR/$f $HOME/$f
+      ln -snfv "$DOT_DIR/$f" "$HOME"/"$f"
       echo "$f"
     done
   fi
