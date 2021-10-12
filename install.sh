@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -eux
 
 function die(){
   echo $@ >&2
