@@ -21,10 +21,10 @@ function setup() {
       git clone "$GITHUB_URL"
     elif has "curl" || has "wget"; then
       if has "curl"; then
-        curl -L "$TAR_BALL" -o dotfiles-master.tar.gz
+        curl -L "$TAR_BALL"
       elif has "wget"; then
         wget -O "$TAR_BALL"
-      fi
+      fi | tar zxv
       mv -f dotfiles-master "$DOT_DIR"
     else
       die "git or curl, wget required"
