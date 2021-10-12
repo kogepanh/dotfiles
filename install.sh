@@ -11,27 +11,23 @@ function has() {
   type "$1" > /dev/null 2>&1
 }
 
-# function symlink() {
-#   [ -e "$2" ] || ln -s "$1" "$2"
-# }
-
 function setup() {
-  cd $HOME
-
   if [ -d "$DOT_DIR" ]; then
-    echo "dotfiles already exists"
     cd "$DOT_DIR" && git pull --rebase
   else
+    cd $HOME
+
     if has "git"; then
       git clone "$GITHUB_URL"
-    elif has "curl"; then
-      curl -L "$TAR_BALL"
-      mv -f dotfiles-master "$DOT_DIR"
-    elif has "wget"; then
-      wget -O - "$TAR_BALL"
+    elif has "curl" || has "wget"; then
+      if has "curl"; then
+        curl -L "$TAR_BALL"
+      elif has "wget"; then
+        wget -O - "$TAR_BALL"
+      fi
       mv -f dotfiles-master "$DOT_DIR"
     else
-      die "git or curl or wget required"
+      die "git or curl, wget required"
     fi
 
     cd $DOT_DIR
@@ -45,8 +41,7 @@ function setup() {
       [[ "$f" == ".editorconfig" ]] && continue
       [[ "$f" == ".DS_Store" ]] && continue
 
-      ln -snfv "$DOT_DIR/$f" "$HOME"/"$f"
-      echo "$f"
+      ln -snfv "$DOT_DIR/$f" "$HOME"/"$f" && echo "$f"
     done
   fi
 }
