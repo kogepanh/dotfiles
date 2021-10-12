@@ -51,5 +51,3 @@ setup() {
 }
 
 setup()
-
-exit 0
