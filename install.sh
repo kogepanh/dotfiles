@@ -20,9 +20,9 @@ function setup() {
     if has "git"; then
       git clone "$GITHUB_URL"
     elif has "curl" || has "wget"; then
-      # if has "curl"; then
-      #   curl -L "$TAR_BALL"
-      if has "wget"; then
+      if has "curl"; then
+        curl -L "$TAR_BALL"
+      elif has "wget"; then
         wget -O "$TAR_BALL"
       fi | tar zxv
       mv -f dotfiles-main "$DOT_DIR"
@@ -41,7 +41,7 @@ function setup() {
       [[ "$f" == ".editorconfig" ]] && continue
       [[ "$f" == ".DS_Store" ]] && continue
 
-      ln -snfv "$DOT_DIR/$f" "$HOME"/"$f" && echo "$f"
+      ln -snfv "$DOT_DIR/$f" "$HOME/$f" && echo "$f"
     done
   fi
 }
