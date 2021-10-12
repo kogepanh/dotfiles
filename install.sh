@@ -20,10 +20,10 @@ function setup() {
     if has "git"; then
       git clone "$GITHUB_URL"
     elif has "curl" || has "wget"; then
-      if has "wget"; then
-        wget -O - "$TAR_BALL"
-      elif has "curl"; then
+      if has "curl"; then
         curl -L "$TAR_BALL" -o dotfiles-master.tar.gz
+      elif has "wget"; then
+        wget -O "$TAR_BALL"
       fi
       mv -f dotfiles-master "$DOT_DIR"
     else
