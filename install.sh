@@ -53,4 +53,4 @@ DOT_DIR=$HOME/dotfiles
 GITHUB_URL="https://github.com/kogepanh/dotfiles.git"
 TAR_BALL="https://github.com/kogepanh/dotfiles/archive/main.tar.gz"
 
-setup()
+setup
