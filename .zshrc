@@ -28,6 +28,18 @@ colors
 #
 setopt nonomatch
 
+# 同時に起動しているzshの間でhistoryを共有する
+setopt share_history
+
+# 同じコマンドをhistoryに残さない
+setopt hist_ignore_all_dups
+
+# スペースから始まるコマンドをhistoryに残さない
+setopt hist_ignore_space
+
+# historyに保存するときに余分なスペースを削除する
+setopt hist_reduce_blanks
+
 # zsh-syntax-highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
